@@ -22,6 +22,8 @@
   header h1{font-family:Oswald,sans-serif;font-weight:700;font-size:clamp(44px,9vw,68px);margin:0;line-height:1}
   header h1 span{color:var(--c);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill}
   header p{margin:10px 0 0;color:var(--muted);max-width:640px}
+  header .credit{font-size:15px;margin-top:8px}
+  header .credit a{color:inherit;font-weight:700}
   .layout{display:grid;gap:24px}
   @media(min-width:960px){.layout{grid-template-columns:minmax(0,1fr) 430px}.side{position:sticky;top:20px;align-self:start}}
   .panel{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:20px;margin-bottom:20px}
@@ -89,8 +91,9 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>Fill your <span>jars</span></h1>
+    <h1>Fill your <span>tickling jars</span></h1>
     <p>Pick a color, rate each one from 1 (a little) to 5 (overflowing), then save your picture. Not your thing? Skip it and the jar stays empty.</p>
+    <p class="credit">Based on <a href="https://lockedtony.github.io/kink-jars/">LockedTony's Kink Jars</a>.</p>
   </header>
 
   <div class="layout">
@@ -161,15 +164,16 @@
 <script>
 /* ===== Edit the jars here. Each array is the label, one entry per line. ===== */
 const JARS = [
-  ["being","a dom"],["being","a sub"],["being","a switch"],["choking"],["being","choked"],["spanking"],["being","spanked"],
-  ["ddlg / mdlb"],["age","play"],["doing stuff","in public"],["wax","play"],["water","sports"],["role","play"],["consensual","non consent"],
-  ["having","orgasms","controlled"],["controlling","orgasms"],["gags"],["feet"],["anal"],["being","tied up"],["tying","people up"],
-  ["humiliating","or","degrading"],["being","humiliated","or","degraded"],["bdsm"],["threesomes"],["sadism"],["masochism"],["spit"]
+  ["being","tickled"],["tickling","someone"],["switching"],["being","restrained"],["restraining","someone"],["unrestrained"],["CNC","tickling"],
+  ["resisting","laughter"],["loud","laughter"],["playful","taunting"],["retaliation"],["gang","tickling"],["erotic","tickling"],["competitive","tickling"],
+  ["gentle","tickles"],["intense","tickles"],["anticipation"],["surprise","attacks"],["slow","build-up"],["hogtie"],["spread-eagle"],
+  ["rack"],["stocks"],["fingers"],["feathers"],["hairbrushes"],["toothbrushes"],["grooming","gloves"],
+  ["feet"],["underarms"],["sides / ribs"],["belly"],["neck / ears"],["post-play","cuddles"],["post-play","food"]
 ];
 const PRESETS = ["#e63946","#ff5d8f","#ff8c42","#ffd23f","#7bd389","#2ec4b6","#3a86ff","#5b2a86","#c77dff","#8d1d3a","#8d5524","#2b2d42"];
 const COLS = 7, INK = "#151311", PW = 1200;
 const ROWS = Math.ceil(JARS.length / COLS);
-const PH = 260 + (ROWS - 1) * 345 + 360;
+const PH = 260 + (ROWS - 1) * 345 + 420;
 const STORE = "kinkjars-v1";
 
 /* ===== state ===== */
@@ -361,9 +365,9 @@ function drawPoster(canvas, scale) {
 
   c.fillStyle = INK; c.textBaseline = "alphabetic"; c.textAlign = "left";
   c.font = "700 104px Oswald, Impact, 'Arial Narrow', sans-serif";
-  const tw = c.measureText("Kink Jars").width, lineW = 360, gap = 26, x0 = (PW - lineW - gap - tw) / 2, base = 140;
+  const tw = c.measureText("Tickling Kink Jars").width, lineW = 360, gap = 26, x0 = (PW - lineW - gap - tw) / 2, base = 140;
   c.fillRect(x0, base - 5, lineW, 7);
-  c.fillText("Kink Jars", x0 + lineW + gap, base);
+  c.fillText("Tickling Kink Jars", x0 + lineW + gap, base);
   const name = state.name.trim();
   if (name) {
     let size = 66; c.font = `${size}px "Permanent Marker", "Comic Sans MS", cursive`;
@@ -382,6 +386,10 @@ function drawPoster(canvas, scale) {
     c.fillStyle = INK; c.textAlign = "center";
     label.forEach((l, k) => c.fillText(l, cx, top + 170 + 44 + k * (size + 4)));
   });
+
+  c.font = "500 20px Oswald, 'Arial Narrow', sans-serif";
+  c.fillStyle = "#555";
+  c.fillText("Based on LockedTony's Kink Jars · lockedtony.github.io/kink-jars", PW / 2, PH - 34);
 }
 
 function drawMini(canvas, idx, level, rgb) {

@@ -3,6 +3,8 @@
 A single-page questionnaire: pick a color, rate each jar 1–5, save a PNG.
 Everything runs in the browser. Nothing is uploaded, and answers are only kept in that person's browser (localStorage) so a refresh doesn't wipe them.
 
+This fork credits [LockedTony's Kink Jars](https://lockedtony.github.io/kink-jars/) both on the page and in every saved image.
+
 ## Host it free on GitHub Pages
 
 1. Create a new repo (public is required for free Pages) and add `index.html`.
