@@ -130,7 +130,7 @@
       <section class="panel">
         <div class="step">Step 3</div>
         <h2>Fill your jars</h2>
-        <p class="hint">Tap a number. Tap it again to empty the jar.</p>
+        <p class="hint">Tap a number. Tap it again to empty the jar. <button class="linkbtn" id="clearAnswers" type="button">Clear all answers</button></p>
         <div id="questions"></div>
       </section>
     </main>
@@ -164,14 +164,14 @@
 <script>
 /* ===== Edit the jars here. Each array is the label, one entry per line. ===== */
 const JARS = [
-  ["being","tickled"],["tickling","someone"],["switching"],["being","restrained"],["restraining","someone"],["unrestrained"],["CNC","tickling"],
-  ["resisting","laughter"],["loud","laughter"],["playful","taunting"],["retaliation"],["gang","tickling"],["erotic","tickling"],["competitive","tickling"],
-  ["gentle","tickles"],["intense","tickles"],["anticipation"],["surprise","attacks"],["slow","build-up"],["hogtie"],["spread-eagle"],
-  ["rack"],["stocks"],["fingers"],["feathers"],["hairbrushes"],["toothbrushes"],["grooming","gloves"],
-  ["feet"],["underarms"],["sides / ribs"],["belly"],["neck / ears"],["post-play","cuddles"],["post-play","food"]
+  ["being","tickled"],["tickling","someone"],["switching"],["being","restrained"],["restraining","someone"],["unrestrained"],["CNC","tickling"],["interrogation"],["begging"],["blindfolds"],
+  ["resisting","laughter"],["loud","laughter"],["playful","taunting"],["retaliation"],["gang","tickling"],["competitive","tickling"],["post-play","cuddles"],["post-play","food"],["tickle","fights"],["surprise","attacks"],
+  ["gentle","tickles"],["intense","tickles"],["anticipation"],["slow","build-up"],["spread-eagle"],["breath","play"],["tickled to","breaking"],["tickle","edging"],["erotic","tickling"],["post orgasm","tickling"],
+  ["rack"],["stocks"],["fingers"],["feathers"],["hairbrushes"],["toothbrushes"],["grooming","gloves"],["hogtie"],["gags"],["belly"],
+  ["feet"],["underarms"],["neck / ears"],["sides / ribs"],["bare","feet"],["socks"],["nylon"],["playing","clothed"],["playing","undressed"],["tickle","stripped"]
 ];
 const PRESETS = ["#e63946","#ff5d8f","#ff8c42","#ffd23f","#7bd389","#2ec4b6","#3a86ff","#5b2a86","#c77dff","#8d1d3a","#8d5524","#2b2d42"];
-const COLS = 7, INK = "#151311", PW = 1200;
+const COLS = 10, INK = "#151311", PW = 1650;
 const ROWS = Math.ceil(JARS.length / COLS);
 const PH = 260 + (ROWS - 1) * 345 + 420;
 const STORE = "kinkjars-v1";
@@ -487,6 +487,10 @@ $("modal").addEventListener("click", e => { if (e.target.id === "modal") $("moda
 $("reset").onclick = () => {
   if (!confirm("Empty all the jars and start over?")) return;
   state.answers = JARS.map(() => 0); state.name = ""; $("name").value = ""; persist(); update(); scrollTo({ top: 0, behavior: "smooth" });
+};
+$("clearAnswers").onclick = () => {
+  if (!confirm("Clear all your jar answers? Your name and color will stay the same.")) return;
+  state.answers = JARS.map(() => 0); persist(); update();
 };
 
 render();
