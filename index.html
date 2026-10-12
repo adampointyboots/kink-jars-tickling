@@ -96,7 +96,7 @@
   <header>
     <h1>Fill your <span>tickling jars</span></h1>
     <p>Pick a color, rate each one from 1 (a little) to 5 (overflowing), then save your picture. Not your thing? Skip it and the jar stays empty. Rather not say? Tap 🔒 to keep that one private.</p>
-    <p class="credit">Based on <a href="https://lockedtony.github.io/kink-jars/">LockedTony's Kink Jars</a>.</p>
+    <p class="credit">Tickling fork by <b>adampointyboots</b>. Based on <a href="https://lockedtony.github.io/kink-jars/">LockedTony's Kink Jars</a>.</p>
   </header>
 
   <div class="layout">
@@ -143,7 +143,7 @@
         <div class="step">Step 4</div>
         <h2>Your jars</h2>
         <canvas class="poster" id="poster" aria-label="Preview of your filled jars"></canvas>
-        <button class="big" id="save" type="button">Save my jars</button>
+        <button class="big" id="save" type="button">Save jars image</button>
         <div class="small-links">
           <span>Nothing leaves your phone.</span>
           <button class="linkbtn" id="reset" type="button">Start over</button>
@@ -153,7 +153,7 @@
   </div>
 </div>
 
-<div class="bar"><div class="bar-in"><span id="progress">0 of 28 filled</span><button class="big" id="saveBar" type="button">Save my jars</button></div></div>
+<div class="bar"><div class="bar-in"><span id="progress">0 of 28 filled</span><button class="big" id="saveBar" type="button">Save jars image</button></div></div>
 
 <div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt">
   <div class="sheet">
@@ -404,6 +404,18 @@ function drawPoster(canvas, scale) {
 
   c.font = "500 20px Oswald, 'Arial Narrow', sans-serif";
   c.fillStyle = "#555";
+  {
+    const pre = "Tickling jars fork by ", handle = "adampointyboots";
+    const reg = "500 32px Oswald, 'Arial Narrow', sans-serif", bold = "700 26px Oswald, 'Arial Narrow', sans-serif";
+    c.font = reg; const wPre = c.measureText(pre).width;
+    c.font = bold; const wHandle = c.measureText(handle).width;
+    const xStart = PW / 2 - (wPre + wHandle) / 2;
+    c.textAlign = "left";
+    c.font = reg; c.fillText(pre, xStart, PH - 68);
+    c.font = bold; c.fillStyle = INK; c.fillText(handle, xStart + wPre, PH - 68);
+    c.fillStyle = "#555"; c.textAlign = "center";
+  }
+  c.font = "500 20px Oswald, 'Arial Narrow', sans-serif";
   c.fillText("Based on LockedTony's Kink Jars · lockedtony.github.io/kink-jars", PW / 2, PH - 34);
 }
 
